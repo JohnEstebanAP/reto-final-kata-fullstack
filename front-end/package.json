@@ -44,6 +44,5 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
-    "bootstrap": "^5.1.3"
   }
 }

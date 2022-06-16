@@ -1,8 +1,8 @@
 //import Template from '@templates/Template.js';
 // import bootstrap from "bootstrap";
-import '@styles/bootstrap.css';
+import "@styles/bootstrap.css";
 // import '@styles/bootstrap.min.css';
-import '@styles/main.css';
+import "@styles/main.css";
 
 const botonAgregar = document.querySelector(".boton-agregar");
 const listaTarea = document.querySelector(".lista-tareas");

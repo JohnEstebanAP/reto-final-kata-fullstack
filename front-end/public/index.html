@@ -16,29 +16,34 @@
     <section class="container">
       <article class="container-list">
         <div class="card border-dark mb-3" style="max-width: 50rem">
-          <!-- Titulo prinsipal -->
+          <!-- Titulo principal -->
           <div class="card-header">
             <font>
               <font> LISTA DE TAREAS 🤓 </font>
             </font>
           </div>
           <div class="card-body">
+            <!-- Descripción de la aplicación web -->
             <p class="card-text">
               <font style="vertical-align: inherit"
                 ><font style="vertical-align: inherit"
-                  >Un texto de ejemplo rápido para construir sobre el título de
-                  la tarjeta y componer la mayor parte del contenido de la
-                  tarjeta.</font
+                  >Esta es una sencilla, intuitiva y hermosa aplicación web
+                  donde podrás crear una lista de tareas y poder gestionarlas de
+                  una manera eficiente, para el cumpliendo tus metas día a día y
+                  puedas ser más organizado. 🙂</font
                 ></font
               >
             </p>
 
+            <!-- Titulo secundario -->
             <div class="header">
               <h1 class="titulo">Lista de tareas</h1>
             </div>
+
+            <!-- Input para crear nuevas listas de tareas -->
             <div class="form-group">
               <label for="exampleInputEmail1" class="form-label mt-4">
-              Agregar una Lista de Tareas nueva
+                Agregar una Lista de Tareas nueva
               </label>
               <div class="div-input-new-list">
                 <input
@@ -48,49 +53,113 @@
                   aria-describedby="emailHelp"
                   placeholder="Nombre de la nueva lista"
                 />
-                <button type="button" class="boton-agregar-lista btn btn-success">
-                Agregar
+                <button
+                  type="button"
+                  class="boton-agregar-lista btn btn-success"
+                >
+                  Agregar
                 </button>
               </div>
               <small id="emailHelp" class="form-text text-muted">.</small>
             </div>
-                    <div class="modal">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true"></span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <button type="button" class="boton-agregar">
-                      Agregar una tarea
-                    </button>
-                    <ul class="lista-tareas">
-                      <li>
-                        <input type="text" class="input-tarea" />
-                        <button type="button" class="boton-eliminar">X</button>
-                      </li>
-                      <li>
-                        <input type="text" class="input-tarea" />
-                        <button type="button" class="boton-eliminar">X</button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="boton-limpiar btn btn-primary">
-                      Limpiar todo
-                    </button>
+
+            <!-- Lista de tareas -->
+            <ul class="ul-listas">
+              <li>
+                <div class="modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true"></span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <button type="button" class="boton-agregar">
+                          Agregar una tarea
+                        </button>
+                        <ul class="lista-tareas">
+                          <li>
+                            <input type="text" class="input-tarea" />
+                            <button type="button" class="boton-eliminar">
+                              X
+                            </button>
+                          </li>
+                          <li>
+                            <input type="text" class="input-tarea" />
+                            <button type="button" class="boton-eliminar">
+                              X
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="boton-limpiar btn btn-primary"
+                        >
+                          Limpiar todo
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </li>
+
+              <li>
+                <div class="modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true"></span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <button type="button" class="boton-agregar">
+                          Agregar una tarea
+                        </button>
+                        <ul class="lista-tareas">
+                          <li>
+                            <input type="text" class="input-tarea" />
+                            <button type="button" class="boton-eliminar">
+                              X
+                            </button>
+                          </li>
+                          <li>
+                            <input type="text" class="input-tarea" />
+                            <button type="button" class="boton-eliminar">
+                              X
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="boton-limpiar btn btn-primary"
+                        >
+                          Limpiar todo
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
           </div>
         </div>
       </article>

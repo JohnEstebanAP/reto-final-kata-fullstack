@@ -169,17 +169,22 @@ body {
 
 /* Estilo del input du crear una nueva lista */
 
-
-.div-input-new-list{
+.div-input-new-list {
   display: flex;
 }
 
-#input-new-list{
+#input-new-list {
   text-transform: capitalize;
 }
 
-.boton-agregar-lista{
+.boton-agregar-lista {
   margin: 5px;
+}
+
+/*Estilos del bloque de listas de tareas */
+.ul-listas {
+  list-style: none;
+  padding: 0;
 }
 
 /* Estilo de los Botones */
@@ -212,9 +217,9 @@ body {
 }
 
 .btn-success {
-    color: #fff;
-    background-color: #41d7a7;
-    border-color: #41d7a7;
+  color: #fff;
+  background-color: #41d7a7;
+  border-color: #41d7a7;
 }
 
 .btn-primary:hover {
@@ -230,7 +235,6 @@ body {
   border-color: #ba2869 !important;
   box-shadow: 0 0 0 0.25rem rgba(235, 81, 150, 0.5) !important;
 }
-
 
 .btn-success {
   color: #fff;
@@ -251,5 +255,3 @@ body {
   border-color: #34ac86;
   box-shadow: 0 0 0 0.25rem rgba(94, 221, 180, 0.5);
 }
-
-

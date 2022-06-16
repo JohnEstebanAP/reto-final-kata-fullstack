@@ -1,8 +1,7 @@
 package com.crud.democrud.ControllerServiceTest;
 
-import com.crud.democrud.repositories.UsuarioRolRepository;
-import com.crud.democrud.services.UsuarioRolServiceImpl;
-import com.crud.democrud.services.UsuarioService;
+import com.crud.democrud.repositories.TasksRepository;
+import com.crud.democrud.services.TasksServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,10 +18,10 @@ import static org.mockito.Mockito.when;
 public class UsuarioRolServiceMockTest {
 
   @MockBean
-  UsuarioRolRepository usuarioRolRepository;
+  TasksRepository usuarioRolRepository;
 
   @Autowired
-  UsuarioRolServiceImpl usuarioRolService;
+  TasksServiceImpl usuarioRolService;
 
   @Test
   public void testUsuarioRolMock(){

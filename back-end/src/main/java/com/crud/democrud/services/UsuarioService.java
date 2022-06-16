@@ -1,7 +1,6 @@
 package com.crud.democrud.services;
 
-import com.crud.democrud.models.UsuarioModel;
-import com.crud.democrud.models.UsuarioRolModel;
+import com.crud.democrud.models.ListsModel;
 import com.crud.democrud.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,23 +13,23 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
     
-    public ArrayList<UsuarioModel> obtenerUsuarios(){
-        return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+    public ArrayList<ListsModel> obtenerUsuarios(){
+        return (ArrayList<ListsModel>) usuarioRepository.findAll();
     }
 
-    public UsuarioModel guardarUsuario(UsuarioModel usuario){
+    public ListsModel guardarUsuario(ListsModel usuario){
         return usuarioRepository.save(usuario);
     }
 
-    public Optional<UsuarioModel> obtenerPorId(Long id){
+    public Optional<ListsModel> obtenerPorId(Long id){
         return usuarioRepository.findById(id);
     }
 
-    public Optional<UsuarioModel> obtenerPorEmail(String email){
+    public Optional<ListsModel> obtenerPorEmail(String email){
         return usuarioRepository.findByEmail(email);
     }
 
-    public ArrayList<UsuarioModel>  obtenerPorPrioridad(Integer prioridad) {
+    public ArrayList<ListsModel>  obtenerPorPrioridad(Integer prioridad) {
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
@@ -45,7 +44,7 @@ public class UsuarioService {
 
     public boolean eliminarPorEmail(String email) {
         try{
-            Optional<UsuarioModel> usuario = usuarioRepository.findByEmail(email);
+            Optional<ListsModel> usuario = usuarioRepository.findByEmail(email);
             Long id = usuario.get().getId();
             eliminarUsuario(id);
             return true;
@@ -55,8 +54,8 @@ public class UsuarioService {
     }
 
 
-    public void update(Long id, UsuarioModel usuario) {
-        Optional<UsuarioModel> existsUsuario = usuarioRepository.findById(id);
+    public void update(Long id, ListsModel usuario) {
+        Optional<ListsModel> existsUsuario = usuarioRepository.findById(id);
         if (existsUsuario.isPresent()) {
             existsUsuario.get().setId(usuario.getId());
             existsUsuario.get().setNombre(usuario.getNombre());

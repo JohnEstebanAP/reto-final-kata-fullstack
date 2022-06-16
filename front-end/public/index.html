@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title>final kata</title>
+    <title>Final Kata Fullstack</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap CSS -->
@@ -16,6 +16,7 @@
     <section class="container">
       <article class="container-list">
         <div class="card border-dark mb-3" style="max-width: 50rem">
+          <!-- Titulo prinsipal -->
           <div class="card-header">
             <font>
               <font> LISTA DE TAREAS 🤓 </font>
@@ -35,10 +36,25 @@
             <div class="header">
               <h1 class="titulo">Lista de tareas</h1>
             </div>
-            <button type="button" class="boton-agregar">
-              Agregar una tarea
-            </button>
-            <div class="modal">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="form-label mt-4">
+              Agregar una Lista de Tareas nueva
+              </label>
+              <div class="div-input-new-list">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="input-new-list"
+                  aria-describedby="emailHelp"
+                  placeholder="Nombre de la nueva lista"
+                />
+                <button type="button" class="boton-agregar-lista btn btn-success">
+                Agregar
+                </button>
+              </div>
+              <small id="emailHelp" class="form-text text-muted">.</small>
+            </div>
+                    <div class="modal">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -66,20 +82,10 @@
                         <button type="button" class="boton-eliminar">X</button>
                       </li>
                     </ul>
-                    <button type="button" class="boton-limpiar">
-                      Limpiar todo
-                    </button>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                      Save changes
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
+                    <button type="button" class="boton-limpiar btn btn-primary">
+                      Limpiar todo
                     </button>
                   </div>
                 </div>

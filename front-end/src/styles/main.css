@@ -131,11 +131,29 @@ body {
   margin-top: -15px;
   padding: 4px 10px;
   font-weight: bold;
-  border: 3px solid black;
+  border: 3px solid rgb(110, 214, 100);
+
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .boton-agregar:hover {
+  color: white;
   background: rgb(110, 214, 100);
+  border: 2px solid transparent;
 }
 
 .lista-tareas {

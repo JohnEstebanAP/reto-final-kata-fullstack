@@ -8,29 +8,31 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class UsuarioServiceTest {
+class ListsServiceTest {
     @Autowired
     ListsRepository usuarioRepository;
 
     @Test
-    void testGuardarUsuario() {
+    void testGuardarLists() {
         ListsModel listsModel = new ListsModel( "to do-list");
-        ListsModel usuarioModelRegistrado = usuarioRepository.save(listsModel);
-        assertNotNull(usuarioModelRegistrado);
+        ListsModel listsModelRegistrado = usuarioRepository.save(listsModel);
+        assertNotNull(listsModelRegistrado);
     }
 
 
     @Test
-    void testListarUsuarios() {
+    void testListarLists() {
+        ListsModel listsModel = new ListsModel( "to do-list");
+        ListsModel listsModelRegistrado = usuarioRepository.save(listsModel);
+
         List<ListsModel> listsModelList = (List<ListsModel>) usuarioRepository.findAll();
-        assertThat(listsModelList).size().isGreaterThan(1);
+        assertThat(listsModelList).size().isGreaterThan(0);
     }
 
 

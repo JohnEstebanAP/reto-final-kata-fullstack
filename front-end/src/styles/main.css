@@ -67,60 +67,6 @@ body {
   text-align: center;
 }
 
-.boton-agregar {
-  display: block;
-  margin: auto;
-  margin-top: -15px;
-  padding: 4px 10px;
-  font-weight: bold;
-  border: 3px solid black;
-}
-
-.boton-agregar:hover {
-  background: rgb(110, 214, 100);
-}
-
-.lista-tareas {
-  list-style: none;
-  padding: 0;
-}
-
-.lista-tareas li {
-  margin: 10px 0;
-  background: #cecbcb;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.lista-tareas li:hover {
-  background: rgb(175, 166, 166);
-}
-
-.boton-eliminar {
-  background: black;
-  color: white;
-  border: none;
-}
-
-.boton-eliminar:hover {
-  background: red;
-}
-
-.input-tarea {
-  border: none;
-  background: #cecbcb;
-  padding: 4px;
-  width: 100%;
-  outline: none;
-  text-transform: capitalize;
-  font-size: 16px;
-}
-
-.input-tarea:focus {
-  background: #eaeaea;
-}
-
 /* .boton-limpiar { */
 /*   display: block; */
 /*   margin: auto; */
@@ -167,7 +113,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-/* Estilo del input du crear una nueva lista */
+/* Estilo del input de crear una nueva lista */
 
 .div-input-new-list {
   display: flex;
@@ -181,11 +127,79 @@ body {
   margin: 5px;
 }
 
+/* Estilos de las tareas*/
+.form-check-input{
+  background-color: #ffffffbd;
+  margin: 0;
+}
+
+.form-check-label{
+  margin-left:10px;
+  margin-right: 10px;
+}
+
 /*Estilos del bloque de listas de tareas */
+
+.boton-agregar {
+  display: block;
+  margin: auto;
+  margin-top: -15px;
+  padding: 4px 10px;
+  font-weight: bold;
+  border: 3px solid black;
+}
+
+.boton-agregar:hover {
+  background: rgb(110, 214, 100);
+}
+
+.lista-tareas {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-tareas li {
+  margin: 10px 0;
+  background: #cecbcb;
+  padding: 10px;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.lista-tareas li:hover {
+  background: rgb(175, 166, 166);
+}
+
 .ul-listas {
   list-style: none;
   padding: 0;
 }
+
+.boton-eliminar {
+  background: black;
+  color: white;
+  border: none;
+}
+
+.boton-eliminar:hover {
+  background: red;
+}
+
+.input-tarea {
+  border: none;
+  background: #cecbcb;
+  padding: 4px;
+  width: 100%;
+  outline: none;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.input-tarea:focus {
+  background: #eaeaea;
+}
+
 
 /* Estilo de los Botones */
 .btn {

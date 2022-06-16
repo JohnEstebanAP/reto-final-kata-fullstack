@@ -1,7 +1,7 @@
 package com.crud.democrud.ControllerServiceTest;
 
-import com.crud.democrud.repositories.UsuarioRepository;
-import com.crud.democrud.services.UsuarioService;
+import com.crud.democrud.repositories.ListsRepository;
+import com.crud.democrud.services.ListsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,18 +16,18 @@ import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
-public class UsuarioServiceMockTest {
+ class UsuarioServiceMockTest {
 
   @MockBean
-  UsuarioRepository usuarioRepository;
+  ListsRepository usuarioRepository;
 
   @Autowired
-  UsuarioService usuarioService;
+  ListsServiceImpl usuarioService;
 
   @Test
-  public void testUsuarioMock(){
+  void testUsuarioMock(){
     when(usuarioRepository.findAll()).thenReturn(new ArrayList<>());
-    assertThat(usuarioService.obtenerUsuarios()).isEmpty();
+    assertThat(usuarioService.getListsAll()).isEmpty();
     verify(usuarioRepository).findAll();
   }
 

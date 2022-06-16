@@ -1,7 +1,7 @@
 package com.crud.democrud.ServicesTest;
 
 import com.crud.democrud.models.ListsModel;
-import com.crud.democrud.repositories.UsuarioRepository;
+import com.crud.democrud.repositories.ListsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -15,50 +15,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UsuarioServiceTest {
+class UsuarioServiceTest {
     @Autowired
-    UsuarioRepository usuarioRepository;
+    ListsRepository usuarioRepository;
 
     @Test
-    public void testGuardarUsuario() {
-        ListsModel usuarioModel = new ListsModel( "john", "esteban.ea145@gmail.com", 99);
-        ListsModel usuarioModelRegistrado = usuarioRepository.save(usuarioModel);
+    void testGuardarUsuario() {
+        ListsModel listsModel = new ListsModel( "to do-list");
+        ListsModel usuarioModelRegistrado = usuarioRepository.save(listsModel);
         assertNotNull(usuarioModelRegistrado);
     }
 
 
     @Test
-    public void testListarUsuarios() {
-        List<ListsModel> usuarioModelList = (List<ListsModel>) usuarioRepository.findAll();
-        assertThat(usuarioModelList).size().isGreaterThan(1);
+    void testListarUsuarios() {
+        List<ListsModel> listsModelList = (List<ListsModel>) usuarioRepository.findAll();
+        assertThat(listsModelList).size().isGreaterThan(1);
     }
 
-    @Test
-    public void testBuscarUsuarioPorId() {
-        Long idBuscado = 1l;
-        Optional<ListsModel> usuarioModelBuscado = usuarioRepository.findById(idBuscado);
-        assertThat(usuarioModelBuscado.get().getId()).isEqualTo(idBuscado);
-    }
-
-    @Test
-    public void testBuscarUsuarioPorEmail() {
-        String emailBuscado = "esteban.ea145@gmail.com";
-        Optional<ListsModel> usuarioModelBuscado = usuarioRepository.findByEmail(emailBuscado);
-        assertThat(usuarioModelBuscado.get().getEmail()).isEqualTo(emailBuscado);
-    }
-
-
-    @Test
-    public void testEliminarUsuarioPorEmail() {
-        String emailBuscado = "esteban.ea145@gmail.com";
-
-        Optional<ListsModel> usuario = usuarioRepository.findByEmail(emailBuscado);
-        Long id = usuario.get().getId();
-        usuarioRepository.deleteById(id);
-        
-        List<ListsModel> usuarioModelList = (List<ListsModel>) usuarioRepository.findAll();
-        assertThat(usuarioModelList).size().isGreaterThan(0);
-    }
 
 
 }

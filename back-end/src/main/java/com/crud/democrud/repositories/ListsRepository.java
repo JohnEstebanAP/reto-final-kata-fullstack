@@ -1,12 +1,10 @@
 package com.crud.democrud.repositories;
 
-
-import com.crud.democrud.models.TasksModel;
+import com.crud.democrud.models.ListsModel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-
 @Repository
-public interface TasksRepository extends CrudRepository<TasksModel, Integer> {
+public interface ListsRepository extends CrudRepository<ListsModel, Integer> {
+
 }

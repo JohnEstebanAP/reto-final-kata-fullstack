@@ -1,30 +1,27 @@
-package com.crud.democrud.controllers;
+package com.crud.democrud.services;
 
 import com.crud.democrud.models.ListsModel;
-import com.crud.democrud.services.ListsServiceImpl;
+import com.crud.democrud.repositories.ListsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 /**
- * [Clase controladora de tabla Lists.]
+ * [Clase de implementación del servicio de la entidad Lists.]
  *
  * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
  * @version 1.0.0
  * @since Esta presente desde la version 1.0.0
  */
-@CrossOrigin
-@RestController
-@RequestMapping("/list")
-public class ListsController {
-
+@Service
+public class ListsServiceImpl {
     /**
-     * crea una instancia de la clase ListsService
+     * crea una instancia o implementación de la interfaz de ListsRepository.
      */
     @Autowired
-    ListsServiceImpl listsService;
+    ListsRepository listsRepository;
 
     /**
      * [Método para consultar todos los elemento de la tabla Lists.]
@@ -33,10 +30,10 @@ public class ListsController {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    @GetMapping()
-    public List<ListsModel> getListsAll() {
-        return listsService.getListsAll();
+    public List<ListsModel> getListsAll(){
+        return (List<ListsModel>) listsRepository.findAll();
     }
+
 
     /**
      * [Método para crear nuevas filas en la tabla Lists.]
@@ -45,9 +42,8 @@ public class ListsController {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    @PostMapping()
-    public ListsModel addLists(@RequestBody ListsModel lists) {
-        return this.listsService.addLists(lists);
+    public ListsModel addLists(ListsModel list){
+        return listsRepository.save(list);
     }
 
     /**
@@ -57,26 +53,31 @@ public class ListsController {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    @PutMapping("/{id}")
-    public void update(@PathVariable int id, @RequestBody ListsModel list){
-        listsService.update(id, list);
+    public void update(int id, ListsModel list) {
+        Optional<ListsModel> existslist = listsRepository.findById(id);
+        if (existslist.isPresent()) {
+            existslist.get().setId(list.getId());
+            existslist.get().setName(list.getName());
+            listsRepository.save(existslist.get());
+        }
     }
 
     /**
      * [Método para eliminar una fila por el id del elemento.]
      *
+     * @param id int
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    @DeleteMapping(path = "/{id}")
-    public String deleteById(@PathVariable("id") int id) {
-        boolean ok = this.listsService.deleteById(id);
-        if (ok) {
-            return "Se eliminó el la lista con el id ".concat(String.valueOf(id));
-        } else {
-            return "No pudo eliminar el la lista con el id ".concat(String.valueOf(id));
+    public boolean deleteById(int id) {
+        try{
+            listsRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            return false;
         }
     }
 
 
+    
 }

@@ -14,7 +14,15 @@ const AddLists = async () => {
     //método para agregar una lista
     console.log(input.value);
     if (input.value != "") {
-      addList(input.value);
+      let name = input.value
+      input.value="";
+      addList(name);
+    }else{
+      Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Por favor ingrese un nombre para la lista de tareas',
+    })
     }
   });
 
@@ -53,8 +61,8 @@ const AddLists = async () => {
   };
 
   //función para agregar una lista
-  const addList = (name) => {
-    fetch(url, {
+  const addList = async (name) => {
+    await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,8 +71,19 @@ const AddLists = async () => {
         name: name,
         tasks: []
       }),
-  }).then((response) => response.json());
+  }).then((response) => {
+    response.json()
+
+    Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'La lista de atreas ha sido creada',
+    showConfirmButton: false,
+    timer: 1500
+    })
     loadLists();
+
+  });
   };
 
   const deleteLists = (idlist) => {
@@ -119,9 +138,9 @@ const AddLists = async () => {
     ulLists.innerHTML = resultados;
   };
 
-  const loadLists = () => {
+   const loadLists = async () => {
     //Procedimiento Mostrar
-    fetch(url)
+    await fetch(url)
       .then((response) => response.json())
       .then((data) => mostrar(data))
       .catch((error) => console.log(error));

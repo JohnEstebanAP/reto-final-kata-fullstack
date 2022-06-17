@@ -12,11 +12,9 @@ var contador = 0;
 const AddLists = async () => {
   buttonAddList.addEventListener("click", () => {
     //método para agregar una lista
-
     console.log(input.value);
     if (input.value != "") {
-      contador++;
-      addList(contador, input.value);
+      addList(input.value);
     }
   });
 
@@ -43,8 +41,8 @@ const AddLists = async () => {
   };
 
   const setArregloLists = () => {
-    setContador();
-    localStorage.setItem("arregloLists", JSON.stringify(arregloLists));
+    // setContador();
+    // localStorage.setItem("arregloLists", JSON.stringify(arregloLists));
     loadLists();
   };
 
@@ -54,19 +52,19 @@ const AddLists = async () => {
     }
   };
 
-  const addList = (id, name) => {
-    let objetoList = {
-      id: id,
-      name: name,
-      tasks: [],
-    };
-
-    if (getArregloLists() != null) {
-      arregloLists = getArregloLists();
-    }
-
-    arregloLists.push(objetoList);
-    setArregloLists();
+  //función para agregar una lista
+  const addList = (name) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        tasks: []
+      }),
+  }).then((response) => response.json());
+    loadLists();
   };
 
   const deleteLists = (idlist) => {
@@ -80,7 +78,8 @@ const AddLists = async () => {
       }
     }
     arregloLists = newArreglo;
-    setArregloLists();
+    // setArregloLists();
+    loadLists();
   };
 
   //funcion para mostrar los resultados

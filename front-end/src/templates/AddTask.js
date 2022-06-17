@@ -7,11 +7,10 @@ var arregloTareas = [];
 var contador = 0;
 
 const AddTask = async () => {
-
   ulLists.addEventListener("click", (event) => {
     //método para agregar una tarea
-    if(event.path[0].type == "button"){
-      if(event.path[0].classList.value == "boton-agregar"){
+    if (event.path[0].type == "button") {
+      if (event.path[0].classList.value == "boton-agregar") {
         agregarTarea(event, 1, "");
       }
     }
@@ -25,7 +24,7 @@ const AddTask = async () => {
   ulLists.addEventListener("click", (event) => {
     //método para eliminar una tarea
     if (event.path[0].type == "button") {
-      if(event.path[0].classList.value == "boton-eliminar btn-dark"){
+      if (event.path[0].classList.value == "boton-eliminar btn-dark") {
         eliminarTarea(event, 2, event.path[1].id);
       }
     }
@@ -54,12 +53,11 @@ const AddTask = async () => {
     setContador();
     localStorage.setItem("arregloTareas", JSON.stringify(arregloTareas));
 
-    if(status == 1){
-
+    if (status == 1) {
       listarTareas(event);
     }
 
-    if(status == 2){
+    if (status == 2) {
       listarTareasDelete(event);
     }
   };
@@ -84,7 +82,7 @@ const AddTask = async () => {
     setArregloTareas(event, status);
   };
 
-  const eliminarTarea = (event,status, idTarea) => {
+  const eliminarTarea = (event, status, idTarea) => {
     let datos = getArregloTareas();
     let newArreglo = [];
     if (datos != null) {
@@ -98,10 +96,9 @@ const AddTask = async () => {
     setArregloTareas(event, status);
   };
 
- const listarTareasDelete = (event) => {
-
-    console.log("hola estamos eliminando")
-   console.log(event.path);
+  const listarTareasDelete = (event) => {
+    console.log("hola estamos eliminando");
+    console.log(event.path);
     console.log(event.path[2].children[1]);
     const litask = event.path[2];
 
@@ -134,10 +131,9 @@ const AddTask = async () => {
     }
   };
 
-
-//funcion para mostrar los resultados
-const mostrar = (data, event) =>{
-     var resultados ="";
+  //funcion para mostrar los resultados
+  const mostrar = (data, event) => {
+    var resultados = "";
     // let datos = getArregloLists();
     // console.log(event.path);
     // console.log( "hola", event.path[1].children[1]);
@@ -146,9 +142,8 @@ const mostrar = (data, event) =>{
     // let datos = getArregloTareas().reverse();
 
     data.forEach((tareas) => {
-
-      tareas.tasks.forEach((tarea)=>{
-         resultados +=  `
+      tareas.tasks.forEach((tarea) => {
+        resultados += `
                           <li id= "${tarea.id}">
                             <input
                               class="form-check-input"
@@ -172,20 +167,20 @@ const mostrar = (data, event) =>{
                           </li>
       `;
       });
-       });
+    });
 
-  litask.innerHTML = resultados;
-}
+    litask.innerHTML = resultados;
+  };
 
   const listarTareas = (event) => {
-      //Procedimiento Mostrar
+    //Procedimiento Mostrar
     fetch(url2)
-    .then((response) => response.json())
-    .then((data) => {
-      mostrar(data, event)
-    })
-    .catch((error) => console.log(error));
-    };
+      .then((response) => response.json())
+      .then((data) => {
+        mostrar(data, event);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const editarTarea = (idTarea, description) => {
     let newTarea = {
@@ -217,7 +212,7 @@ const mostrar = (data, event) =>{
 
   //inicio
   inicializarContador();
-  //listarTareas();
+  listarTareas();
 };
 
 export default AddTask;

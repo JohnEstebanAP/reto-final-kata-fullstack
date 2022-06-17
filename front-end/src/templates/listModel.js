@@ -1,4 +1,4 @@
-const listModel = (list) => {
+const listModel = (list, tasks) => {
   const lista = `
               <li>
                 <div id="${list.id}" class="modal">
@@ -22,7 +22,7 @@ const listModel = (list) => {
                           Agregar una tarea
                         </button>
                         <ul class="lista-tareas">
-
+                          ${tasks}
                         </ul>
                       </div>
                       <div class="modal-footer">

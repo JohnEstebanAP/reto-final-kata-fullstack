@@ -83,24 +83,49 @@ const AddLists = async () => {
     setArregloLists();
   };
 
-//funcion para mostrar los resultados
-const mostrar = (data) =>{
+  //funcion para mostrar los resultados
+  const mostrar = (data) => {
     ulLists.innerHTML = "";
-    var resultados ="";
+    let resultados = "";
     data.forEach((list) => {
-      resultados += listModel(list);
+      var textTasks = "";
+      list.tasks.forEach((tarea) => {
+        console.log(tarea);
+        textTasks += `
+                          <li id= "${tarea.idTask}">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexCheckDefault"
+                            >
+                              ${tarea.idTask}
+                            </label>
+                            <input type="text" class="input-tarea" value ="${tarea.description}"/>
+                            <button
+                              type="button"
+                              class="boton-eliminar btn-dark"
+                            >
+                              X
+                            </button>
+                          </li>
+    `;
+      });
+      resultados += listModel(list, textTasks);
     });
     ulLists.innerHTML = resultados;
-}
-
+  };
 
   const loadLists = () => {
-
-  //Procedimiento Mostrar
-  fetch(url)
-  .then((response) => response.json())
-  .then((data) => mostrar(data))
-  .catch((error) => console.log(error));
+    //Procedimiento Mostrar
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => mostrar(data))
+      .catch((error) => console.log(error));
   };
 
   //inicio

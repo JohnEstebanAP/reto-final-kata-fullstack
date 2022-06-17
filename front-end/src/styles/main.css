@@ -28,8 +28,8 @@ body {
 }
 
 .card-body {
-    flex: 1 1 auto;
-    padding: 2rem 4rem;
+  flex: 1 1 auto;
+  padding: 2rem 2rem;
 }
 
 .card.border-dark {
@@ -71,7 +71,6 @@ body {
 .titulo {
   text-align: center;
 }
-
 
 .modal {
   position: inherit;
@@ -118,13 +117,13 @@ body {
 }
 
 /* Estilos de las tareas*/
-.form-check-input{
+.form-check-input {
   background-color: #ffffffbd;
   margin: 0;
 }
 
-.form-check-label{
-  margin-left:10px;
+.form-check-label {
+  margin-left: 10px;
   margin-right: 10px;
 }
 
@@ -184,7 +183,7 @@ body {
   padding: 0;
 }
 
-.boton-eliminar{
+.boton-eliminar {
   /* padding-top: 0 !important; */
   /* padding-bottom: 0 !important; */
   padding: 0.2rem 0.7rem;
@@ -207,7 +206,6 @@ body {
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
 .boton-eliminar:hover {
   color: #fff;
   background-color: red !important;
@@ -227,7 +225,6 @@ body {
 .input-tarea:focus {
   background: #eaeaea;
 }
-
 
 /* Estilo de los Botones */
 .btn {
@@ -298,7 +295,6 @@ body {
   box-shadow: 0 0 0 0.25rem rgba(94, 221, 180, 0.5);
 }
 
-
 .btn-dark {
   color: #fff;
   background-color: #212529;
@@ -343,5 +339,3 @@ body {
   background-color: #212529;
   border-color: #212529;
 }
-
-

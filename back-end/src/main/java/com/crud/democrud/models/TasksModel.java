@@ -1,5 +1,7 @@
 package com.crud.democrud.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 /**
@@ -32,13 +34,16 @@ public class TasksModel {
      */
     @Column(name = "realized")
     private boolean realized;
-
     /**
      * Llave foranea, representa la columna  que hace referencia a el id de la lista.
      */
-    @ManyToOne()
-    @JoinColumn(name = "idlist", referencedColumnName = "id")
+    //@JoinColumn(name = "idlist", referencedColumnName = "id")
+//    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idlist")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ListsModel idlist;
+
 
     /**
      * [Método constructor por defecto.]
@@ -49,12 +54,18 @@ public class TasksModel {
     public TasksModel() {
 
     }
-
+/*
+    public TasksModel(String description, boolean realized) {
+        this.description = description;
+        this.realized = realized;
+    }*/
+/*
     public TasksModel(String description, boolean realized, ListsModel idlist) {
         this.description = description;
         this.realized = realized;
         this.idlist = idlist;
     }
+*/
 
     //Getters and Setters
 
@@ -89,4 +100,6 @@ public class TasksModel {
     public void setIdlist(ListsModel idlist) {
         this.idlist = idlist;
     }
+
+
 }

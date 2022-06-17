@@ -57,13 +57,13 @@ public class TasksServiceImpl {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    public void update(int id, TasksModel task) {
+    public void update(Integer id, TasksModel task) {
         Optional<TasksModel> existsTask = taskRepositori.findById(id);
         if (existsTask.isPresent()) {
             existsTask.get().setIdTask(task.getIdTask());
             existsTask.get().setDescription(task.getDescription());
             existsTask.get().setRealized(task.isRealized());
-            existsTask.get().setIdlist(task.getIdlist());
+           // existsTask.get().setIdlist(task.getIdlist());
             taskRepositori.save(existsTask.get());
         }
     }
@@ -75,7 +75,7 @@ public class TasksServiceImpl {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    public boolean delete(int id) {
+    public boolean delete(Integer id) {
         Optional<TasksModel> existsTask = taskRepositori.findById(id);
         if (existsTask.isPresent()) {
             try {

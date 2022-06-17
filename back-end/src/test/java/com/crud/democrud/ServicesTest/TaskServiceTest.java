@@ -21,17 +21,14 @@ class TaskServiceTest {
 
     @Test
     void testGuardarTasks(){
-        ListsModel listModel=new ListsModel("Luisa");
-        TasksModel taskModel=new TasksModel("te amo", true , listModel);
+        TasksModel taskModel=new TasksModel("Luisa te amo", true);
         TasksModel taskModelRegistrado = tasksRepository.save(taskModel);
         assertNotNull(taskModelRegistrado);
     }
 
     @Test
     void testListarTasks(){
-
-        ListsModel listModel=new ListsModel("Luisa");
-        TasksModel taskModel=new TasksModel("te amo", true , listModel);
+        TasksModel taskModel=new TasksModel("Luisa te amo", true);
         TasksModel taskModelRegistrado = tasksRepository.save(taskModel);
 
         List<TasksModel> tasksModelList= (List<TasksModel>) tasksRepository.findAll();

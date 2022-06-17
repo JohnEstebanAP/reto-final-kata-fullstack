@@ -53,11 +53,12 @@ public class ListsServiceImpl {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    public void update(int id, ListsModel list) {
+    public void update(Integer id, ListsModel list) {
         Optional<ListsModel> existslist = listsRepository.findById(id);
         if (existslist.isPresent()) {
             existslist.get().setId(list.getId());
             existslist.get().setName(list.getName());
+            existslist.get().setTasks(list.getTasks());
             listsRepository.save(existslist.get());
         }
     }
@@ -69,7 +70,7 @@ public class ListsServiceImpl {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    public boolean deleteById(int id) {
+    public boolean deleteById(Integer id) {
         try{
             listsRepository.deleteById(id);
             return true;

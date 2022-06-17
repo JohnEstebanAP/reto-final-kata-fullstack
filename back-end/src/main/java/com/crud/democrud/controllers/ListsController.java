@@ -57,8 +57,8 @@ public class ListsController {
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
      * @since Esta presente desde la version 1.0.0
      */
-    @PutMapping("/{id}")
-    public void update(@PathVariable int id, @RequestBody ListsModel list){
+    @PutMapping(path= "/{id}")
+    public void update(@PathVariable Integer id, @RequestBody ListsModel list){
         listsService.update(id, list);
     }
 
@@ -69,7 +69,7 @@ public class ListsController {
      * @since Esta presente desde la version 1.0.0
      */
     @DeleteMapping(path = "/{id}")
-    public String deleteById(@PathVariable("id") int id) {
+    public String deleteById(@PathVariable("id") Integer id) {
         boolean ok = this.listsService.deleteById(id);
         if (ok) {
             return "Se eliminó el la lista con el id ".concat(String.valueOf(id));

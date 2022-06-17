@@ -1,6 +1,6 @@
 import listModel from "@templates/listModel.js";
 
-const url = "http://localhost:8080/list";
+const url = "http://localhost:8080/list/";
 const ulLists = document.querySelector(".ul-listas");
 const buttonAddList = document.querySelector(".boton-agregar-lista");
 const input = document.querySelector("#input-new-list");
@@ -10,8 +10,9 @@ var arregloLists = [];
 var contador = 0;
 
 const AddLists = async () => {
-  buttonAddList.addEventListener("click", () => {
+
     //método para agregar una lista
+  buttonAddList.addEventListener("click", () => {
     console.log(input.value);
     if (input.value != "") {
       let name = input.value
@@ -26,11 +27,10 @@ const AddLists = async () => {
     }
   });
 
+//método para eliminar una tarea
   ulLists.addEventListener("click", (event) => {
-    //método para eliminar una tarea
     if (event.path[0].type == "button") {
       if (event.path[0].classList.value == "btn-delete-list btn-close") {
-        console.log(event.path);
         deleteLists(event.path[4].id);
       }
     }
@@ -86,20 +86,30 @@ const AddLists = async () => {
   });
   };
 
-  const deleteLists = (idlist) => {
-    let datos = getArregloLists();
-    let newArreglo = [];
-    if (datos != null) {
-      for (const list of datos) {
-        if (list.id != idlist) {
-          newArreglo.push(list);
+  const deleteLists = async (idlist) => {
+    Swal.fire({
+        title: '¿deseas eliminar esta lista?',
+        text: "¡No podra revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, Eliminar está lista!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire('¡Eliminada!','success');
+
+            console.log(idlist);
+            fetch(url+idlist, {
+                    method: "DELETE",
+            }).then((res) => {
+                //res.json();
+                loadLists();
+            });
         }
-      }
-    }
-    arregloLists = newArreglo;
-    // setArregloLists();
-    loadLists();
-  };
+        });
+   }
 
   //funcion para mostrar los resultados
   const mostrar = (data) => {
@@ -147,7 +157,6 @@ const AddLists = async () => {
   };
 
   //inicio
-  inicializarContador();
   loadLists();
 };
 

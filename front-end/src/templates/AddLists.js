@@ -1,5 +1,6 @@
 import listModel from "@templates/listModel.js";
 
+const url = "http://localhost:8080/list";
 const ulLists = document.querySelector(".ul-listas");
 const buttonAddList = document.querySelector(".boton-agregar-lista");
 const input = document.querySelector("#input-new-list");
@@ -82,12 +83,25 @@ const AddLists = async () => {
     setArregloLists();
   };
 
-  const loadLists = () => {
+//funcion para mostrar los resultados
+const mostrar = (data) =>{
     ulLists.innerHTML = "";
-    let datos = getArregloLists();
-    for (const list of datos) {
-      ulLists.innerHTML += listModel(list);
-    }
+    var resultados ="";
+    // let datos = getArregloLists();
+    data.forEach((list) => {
+      resultados += listModel(list);
+    });
+    ulLists.innerHTML = resultados;
+}
+
+
+  const loadLists = () => {
+
+  //Procedimiento Mostrar
+  fetch(url)
+  .then((response) => response.json())
+  .then((data) => mostrar(data))
+  .catch((error) => console.log(error));
   };
 
   //inicio

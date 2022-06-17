@@ -54,18 +54,21 @@ public class TasksModel {
     public TasksModel() {
 
     }
-/*
-    public TasksModel(String description, boolean realized) {
-        this.description = description;
-        this.realized = realized;
-    }*/
-/*
+
+    /**
+     * [Método constructor con todos los parámetros.]
+     * @param description Strign
+     * @param realized boolean
+     * @param idlist ListsModel
+     * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.coW
+     * @since Esta presente desde la version 1.0.0
+     */
     public TasksModel(String description, boolean realized, ListsModel idlist) {
         this.description = description;
         this.realized = realized;
         this.idlist = idlist;
     }
-*/
+
 
     //Getters and Setters
 

@@ -32,30 +32,17 @@ public class ListsModel {
     @OneToMany( mappedBy = "idlist", cascade = CascadeType.REMOVE )
     private List<TasksModel> tasks;
 
-    /*
-     * [Método constructor con todos los parámetros.]
-     * @param tasks List<TaksModel>
-     * @param name String
-     * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.coW
-     * @since Esta presente desde la version 1.0.0
-     */
-    /*
-    public ListsModel(String name, List<TasksModel> tasks) {
-        this.name = name;
-        this.tasks = tasks;
-    }
-*/
-    /*
+
+    /**
      * [Método constructor con un solo parámetro.]
      * @param name String
      * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.coW
      * @since Esta presente desde la version 1.0.0
      */
-    /*
     public ListsModel(String name) {
         this.name = name;
     }
-*/
+
     /**
      * [Método constructor por defecto.]
      *

@@ -1,3 +1,5 @@
+const url1 = "http://localhost:8080/tasks";
+const url2 = "http://localhost:8080/list";
 const ulLists = document.querySelector(".ul-listas");
 
 //Local Starage
@@ -132,16 +134,21 @@ const AddTask = async () => {
     }
   };
 
-  const listarTareas = (event) => {
 
+//funcion para mostrar los resultados
+const mostrar = (data, event) =>{
+     var resultados ="";
+    // let datos = getArregloLists();
     // console.log(event.path);
-    // console.log(event.path[1].children[1]);
+    // console.log( "hola", event.path[1].children[1]);
     const litask = event.path[1].children[1];
-
     litask.innerHTML = "";
-    let datos = getArregloTareas().reverse();
-    for (const tarea of datos) {
-      litask.innerHTML += `
+    // let datos = getArregloTareas().reverse();
+
+    data.forEach((tareas) => {
+
+      tareas.tasks.forEach((tarea)=>{
+         resultados +=  `
                           <li id= "${tarea.id}">
                             <input
                               class="form-check-input"
@@ -163,9 +170,22 @@ const AddTask = async () => {
                               X
                             </button>
                           </li>
-    `;
-    }
-  };
+      `;
+      });
+       });
+
+  litask.innerHTML = resultados;
+}
+
+  const listarTareas = (event) => {
+      //Procedimiento Mostrar
+    fetch(url2)
+    .then((response) => response.json())
+    .then((data) => {
+      mostrar(data, event)
+    })
+    .catch((error) => console.log(error));
+    };
 
   const editarTarea = (idTarea, description) => {
     let newTarea = {

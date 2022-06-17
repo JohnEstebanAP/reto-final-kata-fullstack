@@ -87,7 +87,6 @@ const AddLists = async () => {
 const mostrar = (data) =>{
     ulLists.innerHTML = "";
     var resultados ="";
-    // let datos = getArregloLists();
     data.forEach((list) => {
       resultados += listModel(list);
     });

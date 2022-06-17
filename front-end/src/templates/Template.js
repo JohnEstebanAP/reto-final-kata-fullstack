@@ -9,7 +9,7 @@ const main = null || document.querySelector(".container");
 
 const StartTemplate = async () => {
   AddLists();
-  // AddTask();
+  AddTask();
 };
 
 export default StartTemplate;

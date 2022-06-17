@@ -5,10 +5,6 @@ const ulLists = document.querySelector(".ul-listas");
 const buttonAddList = document.querySelector(".boton-agregar-lista");
 const input = document.querySelector("#input-new-list");
 
-//Local Starage
-var arregloLists = [];
-var contador = 0;
-
 const AddLists = async () => {
   //método para agregar una lista
   buttonAddList.addEventListener("click", () => {
@@ -42,6 +38,7 @@ const AddLists = async () => {
       }
     }
   });
+
   //método para eliminar una tarea
   ulLists.addEventListener("click", (event) => {
     if (event.path[0].type == "button") {
@@ -51,29 +48,6 @@ const AddLists = async () => {
     }
   });
 
-  const getContador = () => {
-    return localStorage.getItem("contador");
-  };
-
-  const setContador = () => {
-    localStorage.setItem("contador", contador);
-  };
-
-  const getArregloLists = () => {
-    return JSON.parse(localStorage.getItem("arregloLists"));
-  };
-
-  const setArregloLists = () => {
-    // setContador();
-    // localStorage.setItem("arregloLists", JSON.stringify(arregloLists));
-    loadLists();
-  };
-
-  const inicializarContador = () => {
-    if (getContador() != null) {
-      contador = getContador();
-    }
-  };
 
   //función para agregar una lista
   const addList = async (name) => {

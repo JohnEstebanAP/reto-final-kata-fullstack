@@ -1,17 +1,14 @@
-const url1 = "http://localhost:8080/tasks";
-const url2 = "http://localhost:8080/list";
+const url1 = "http://localhost:8080/tasks/";
+const url2 = "http://localhost:8080/list/";
 const ulLists = document.querySelector(".ul-listas");
 
-//Local Starage
-var arregloTareas = [];
-var contador = 0;
 
 const AddTask = async () => {
   ulLists.addEventListener("click", (event) => {
     //método para agregar una tarea
     if (event.path[0].type == "button") {
       if (event.path[0].classList.value == "boton-agregar") {
-        agregarTarea(event, 1, "");
+        addTasks(event, 1, "");
       }
     }
   });
@@ -21,14 +18,14 @@ const AddTask = async () => {
   //   limpiarTodo();
   // });
 
-  ulLists.addEventListener("click", (event) => {
-    //método para eliminar una tarea
-    if (event.path[0].type == "button") {
-      if (event.path[0].classList.value == "boton-eliminar btn-dark") {
-        eliminarTarea(event, 2, event.path[1].id);
-      }
-    }
-  });
+  // ulLists.addEventListener("click", (event) => {
+  //   //método para eliminar una tarea
+  //   if (event.path[0].type == "button") {
+  //     if (event.path[0].classList.value == "boton-eliminar btn-dark") {
+  //       // eliminarTarea(event, 2, event.path[1].id);
+  //     }
+  //   }
+  // });
 
   // listaTarea.addEventListener("keypress", (event) => {
   //   //método editar
@@ -37,114 +34,95 @@ const AddTask = async () => {
   //   }
   // });
 
-  const getContador = () => {
-    return localStorage.getItem("contador");
-  };
-
-  const setContador = () => {
-    localStorage.setItem("contador", contador);
-  };
-
-  const getArregloTareas = () => {
-    return JSON.parse(localStorage.getItem("arregloTareas"));
-  };
-
-  const setArregloTareas = (event, status) => {
-    setContador();
-    localStorage.setItem("arregloTareas", JSON.stringify(arregloTareas));
-
-    if (status == 1) {
-      listarTareas(event);
-    }
-
-    if (status == 2) {
+   const loadTasks = (event, status) => {
+      if (status == 2) {
       listarTareasDelete(event);
     }
   };
 
-  const inicializarContador = () => {
-    if (getContador() != null) {
-      contador = getContador();
+  const addTasks = async (event, status, description) => {
+    if (status == 1) {
+      let idList = event.path[4].id;
+      await fetch(url1, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: description,
+        realized: false,
+        idlist:{ id: idList}
+      }),
+    }).then(() =>{
+      listarTareas(event);
+    }).catch((err)=>{
+      console.log(err);
+    });
     }
-  };
-
-  const agregarTarea = (event, status, description) => {
-    contador++;
-    let objetoTarea = {
-      id: contador,
-      descripcion: description,
-    };
-    if (getArregloTareas() != null) {
-      arregloTareas = getArregloTareas();
-    }
-
-    arregloTareas.push(objetoTarea);
-    setArregloTareas(event, status);
   };
 
   const eliminarTarea = (event, status, idTarea) => {
-    let datos = getArregloTareas();
-    let newArreglo = [];
-    if (datos != null) {
-      for (const tarea of datos) {
-        if (tarea.id != idTarea) {
-          newArreglo.push(tarea);
-        }
-      }
-    }
-    arregloTareas = newArreglo;
-    setArregloTareas(event, status);
+    // let datos = getArregloTareas();
+    // let newArreglo = [];
+    // if (datos != null) {
+    //   for (const tarea of datos) {
+    //     if (tarea.id != idTarea) {
+    //       newArreglo.push(tarea);
+    //     }
+    //   }
+    // }
+    // arregloTareas = newArreglo;
+    // setArregloTareas(event, status);
   };
 
   const listarTareasDelete = (event) => {
-    console.log("hola estamos eliminando");
-    console.log(event.path);
-    console.log(event.path[2].children[1]);
-    const litask = event.path[2];
-
-    litask.innerHTML = "";
-    let datos = getArregloTareas().reverse();
-    for (const tarea of datos) {
-      litask.innerHTML += `
-                          <li id= "${tarea.id}">
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label"
-                              for="flexCheckDefault"
-                            >
-                              ${tarea.id}
-                            </label>
-                            <input type="text" class="input-tarea" value ="${tarea.descripcion}"/>
-                            <button
-                              type="button"
-                              class="boton-eliminar btn-dark"
-                            >
-                              X
-                            </button>
-                          </li>
-    `;
-    }
+    // console.log("hola estamos eliminando");
+    // console.log(event.path);
+    // console.log(event.path[2].children[1]);
+    // const litask = event.path[2];
+    //
+    // litask.innerHTML = "";
+    // let datos = getArregloTareas().reverse();
+    // for (const tarea of datos) {
+    //   litask.innerHTML += `
+    //                       <li id= "${tarea.id}">
+    //                         <input
+    //                           class="form-check-input"
+    //                           type="checkbox"
+    //                           value=""
+    //                           id="flexCheckDefault"
+    //                         />
+    //                         <label
+    //                           class="form-check-label"
+    //                           for="flexCheckDefault"
+    //                         >
+    //                           ${tarea.id}
+    //                         </label>
+    //                         <input type="text" class="input-tarea" value ="${tarea.descripcion}"/>
+    //                         <button
+    //                           type="button"
+    //                           class="boton-eliminar btn-dark"
+    //                         >
+    //                           X
+    //                         </button>
+    //                       </li>
+    // `;
+    // }
   };
 
   //funcion para mostrar los resultados
   const mostrar = (data, event) => {
+
+    console.log(data);
+    console.log(event)
     var resultados = "";
-    // let datos = getArregloLists();
-    // console.log(event.path);
-    // console.log( "hola", event.path[1].children[1]);
     const litask = event.path[1].children[1];
     litask.innerHTML = "";
-    // let datos = getArregloTareas().reverse();
 
     data.forEach((tareas) => {
       tareas.tasks.forEach((tarea) => {
         resultados += `
-                          <li id= "${tarea.id}">
+                          <li id= "${tarea.idTask}">
                             <input
                               class="form-check-input"
                               type="checkbox"
@@ -155,9 +133,9 @@ const AddTask = async () => {
                               class="form-check-label"
                               for="flexCheckDefault"
                             >
-                              ${tarea.id}
+                              ${tarea.idTask}
                             </label>
-                            <input type="text" class="input-tarea" value ="${tarea.descripcion}"/>
+                            <input type="text" class="input-tarea" value ="${tarea.description}"/>
                             <button
                               type="button"
                               class="boton-eliminar btn-dark"
@@ -168,7 +146,6 @@ const AddTask = async () => {
       `;
       });
     });
-
     litask.innerHTML = resultados;
   };
 
@@ -177,7 +154,7 @@ const AddTask = async () => {
     fetch(url2)
       .then((response) => response.json())
       .then((data) => {
-        mostrar(data, event);
+         mostrar(data, event);
       })
       .catch((error) => console.log(error));
   };
@@ -198,20 +175,16 @@ const AddTask = async () => {
         }
       }
     }
-    arregloTareas = newArreglo;
-    setArregloTareas();
+    // arregloTareas = newArreglo;
+    // setArregloTareas();
   };
 
-  //Método para limpior todas las tareas
+  //Método para limpiar todas las tareas
   const limpiarTodo = () => {
-    arregloTareas = [];
-    contador = 0;
-    setArregloTareas();
-    setContador();
+
   };
 
   //inicio
-  inicializarContador();
   listarTareas();
 };
 

@@ -80,5 +80,7 @@ public class ListsServiceImpl {
     }
 
 
-    
+    public Optional<ListsModel> getListById(Integer id) {
+        return listsRepository.findById(id);
+    }
 }

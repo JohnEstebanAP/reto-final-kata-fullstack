@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * [Clase controladora de tabla Lists.]
@@ -36,6 +37,18 @@ public class ListsController {
     @GetMapping()
     public List<ListsModel> getListsAll() {
         return listsService.getListsAll();
+    }
+
+    /**
+     * [Método para consultar por él id.]
+     *
+     * @return Optional<ListsModel></>
+     * @author John Esteban Alvarez Piedrahita - esteban.ea145@gmail.com
+     * @since Esta presente desde la version 1.0.0
+     */
+    @GetMapping(path = "/{id}")
+    public Optional<ListsModel> gotListsById(@PathVariable("id") Integer id) {
+        return this.listsService.getListById(id);
     }
 
     /**

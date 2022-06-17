@@ -10,24 +10,39 @@ var arregloLists = [];
 var contador = 0;
 
 const AddLists = async () => {
-
-    //método para agregar una lista
+  //método para agregar una lista
   buttonAddList.addEventListener("click", () => {
-    console.log(input.value);
     if (input.value != "") {
-      let name = input.value
-      input.value="";
+      let name = input.value;
+      input.value = "";
       addList(name);
-    }else{
+    } else {
       Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Por favor ingrese un nombre para la lista de tareas',
-    })
+        icon: "error",
+        title: "Oops...",
+        text: "Por favor ingrese un nombre para la lista de tareas",
+      });
     }
   });
 
-//método para eliminar una tarea
+  //método para agregar una lista con la tecla enter
+  input.addEventListener("keypress", (event) => {
+    //método editar
+    if (event.keyCode == 13) {
+      if (input.value != "") {
+        let name = input.value;
+        input.value = "";
+        addList(name);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Por favor ingrese un nombre para la lista de tareas",
+        });
+      }
+    }
+  });
+  //método para eliminar una tarea
   ulLists.addEventListener("click", (event) => {
     if (event.path[0].type == "button") {
       if (event.path[0].classList.value == "btn-delete-list btn-close") {
@@ -69,47 +84,45 @@ const AddLists = async () => {
       },
       body: JSON.stringify({
         name: name,
-        tasks: []
+        tasks: [],
       }),
-  }).then((response) => {
-    response.json()
+    }).then((response) => {
+      response.json();
 
-    Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'La lista de atreas ha sido creada',
-    showConfirmButton: false,
-    timer: 1500
-    })
-    loadLists();
-
-  });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "La lista de atreas ha sido creada",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      loadLists();
+    });
   };
 
   const deleteLists = async (idlist) => {
     Swal.fire({
-        title: '¿deseas eliminar esta lista?',
-        text: "¡No podra revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, Eliminar está lista!'
+      title: "¿deseas eliminar esta lista?",
+      text: "¡No podra revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Si, Eliminar está lista!",
     }).then((result) => {
-        if (result.isConfirmed) {
+      if (result.isConfirmed) {
+        Swal.fire("¡Eliminada!", "success");
 
-            Swal.fire('¡Eliminada!','success');
-
-            console.log(idlist);
-            fetch(url+idlist, {
-                    method: "DELETE",
-            }).then((res) => {
-                //res.json();
-                loadLists();
-            });
-        }
+        console.log(idlist);
+        fetch(url + idlist, {
+          method: "DELETE",
+        }).then((res) => {
+          //res.json();
+          loadLists();
         });
-   }
+      }
+    });
+  };
 
   //funcion para mostrar los resultados
   const mostrar = (data) => {
@@ -148,7 +161,7 @@ const AddLists = async () => {
     ulLists.innerHTML = resultados;
   };
 
-   const loadLists = async () => {
+  const loadLists = async () => {
     //Procedimiento Mostrar
     await fetch(url)
       .then((response) => response.json())

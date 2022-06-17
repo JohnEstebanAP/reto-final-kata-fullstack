@@ -43,6 +43,7 @@ const AddTask = async () => {
   const addTasks = async (event, status, description) => {
     if (status == 1) {
       let idList = event.path[4].id;
+
       await fetch(url1, {
       method: "POST",
       headers: {
@@ -54,7 +55,7 @@ const AddTask = async () => {
         idlist:{ id: idList}
       }),
     }).then(() =>{
-      listarTareas(event);
+      listarTareas(event, idList);
     }).catch((err)=>{
       console.log(err);
     });
@@ -111,18 +112,17 @@ const AddTask = async () => {
   };
 
   //funcion para mostrar los resultados
-  const mostrar = (data, event) => {
+  const mostrar = (data, event, idList) => {
 
     console.log(data);
-    console.log(event)
+    // console.log(event.path[1].children[1])
     var resultados = "";
     const litask = event.path[1].children[1];
     litask.innerHTML = "";
 
-    data.forEach((tareas) => {
-      tareas.tasks.forEach((tarea) => {
+      data.tasks.forEach((task) => {
         resultados += `
-                          <li id= "${tarea.idTask}">
+                          <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
                               type="checkbox"
@@ -133,9 +133,9 @@ const AddTask = async () => {
                               class="form-check-label"
                               for="flexCheckDefault"
                             >
-                              ${tarea.idTask}
+                              ${task.idTask}
                             </label>
-                            <input type="text" class="input-tarea" value ="${tarea.description}"/>
+                            <input type="text" class="input-tarea" value ="${task.description}"/>
                             <button
                               type="button"
                               class="boton-eliminar btn-dark"
@@ -144,17 +144,16 @@ const AddTask = async () => {
                             </button>
                           </li>
       `;
-      });
     });
     litask.innerHTML = resultados;
   };
 
-  const listarTareas = (event) => {
+  const listarTareas = (event, idList) => {
     //Procedimiento Mostrar
-    fetch(url2)
+    fetch(url2+idList)
       .then((response) => response.json())
       .then((data) => {
-         mostrar(data, event);
+         mostrar(data, event, idList);
       })
       .catch((error) => console.log(error));
   };
@@ -185,7 +184,7 @@ const AddTask = async () => {
   };
 
   //inicio
-  listarTareas();
+  // listarTareas();
 };
 
 export default AddTask;

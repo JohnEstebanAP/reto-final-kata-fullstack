@@ -103,8 +103,8 @@ const AddLists = async () => {
     data.forEach((list) => {
       var textTasks = "";
       list.tasks.forEach((task) => {
-          if(task.realized){
-         textTasks += `
+        if (task.realized) {
+          textTasks += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -128,9 +128,8 @@ const AddLists = async () => {
                             </button>
                           </li>
       `;
-
-      }else{
-       textTasks += `
+        } else {
+          textTasks += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -153,7 +152,7 @@ const AddLists = async () => {
                             </button>
                           </li>
       `;
-      }
+        }
       });
       resultados += listModel(list, textTasks);
     });

@@ -21,20 +21,19 @@ const AddTask = async () => {
     }
   });
 
-    //método editar
-  ulLists.addEventListener("keypress",async (event) => {
+  //método editar
+  ulLists.addEventListener("keypress", async (event) => {
     if (event.keyCode == 13) {
-      const id= event.path[1].id;
+      const id = event.path[1].id;
       const description = event.path[0].value;
       const check = event.path[1].children[0].checked;
       await updateTask(id, description, check);
     }
   });
   //método para edinar el estado de las tareas
-  ulLists.addEventListener("click",async (event) => {
-
-    if(event.target.classList[0] == "form-check-input"){
-     const id= event.path[1].id;
+  ulLists.addEventListener("click", async (event) => {
+    if (event.target.classList[0] == "form-check-input") {
+      const id = event.path[1].id;
       const description = event.path[1].children[2].value;
       const check = event.path[1].children[0].checked;
       await updateTask(id, description, check);
@@ -46,12 +45,10 @@ const AddTask = async () => {
     }
   });
 
-
   // botonLimpiar.addEventListener("click", () => {
   //   //método Limpiar
   //   limpiarTodo();
   // });
-
 
   const addTasks = async (event, status, description) => {
     if (status == 1) {
@@ -143,9 +140,8 @@ const AddTask = async () => {
     litask.innerHTML = "";
 
     data.tasks.forEach((task) => {
-
-      if(task.realized){
-         resultados += `
+      if (task.realized) {
+        resultados += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -169,9 +165,8 @@ const AddTask = async () => {
                             </button>
                           </li>
       `;
-
-      }else{
-       resultados += `
+      } else {
+        resultados += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -195,8 +190,7 @@ const AddTask = async () => {
                           </li>
       `;
       }
-
-         });
+    });
     litask.innerHTML = resultados;
   };
 
@@ -211,20 +205,20 @@ const AddTask = async () => {
   };
 
   //Procedimiento para editar  una tarea.
-  const updateTask = async (idTask, description, realized ) => {
-  await fetch(url1+idTask, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-          idTask: idTask,
-          description: description,
-          realized: realized,
-    }),
-  })
-    .then(() => console.log("actualizado"))
-    .catch((error) => console.error(error));
+  const updateTask = async (idTask, description, realized) => {
+    await fetch(url1 + idTask, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idTask: idTask,
+        description: description,
+        realized: realized,
+      }),
+    })
+      .then(() => console.log("actualizado"))
+      .catch((error) => console.error(error));
   };
 
   //Método para limpiar todas las tareas

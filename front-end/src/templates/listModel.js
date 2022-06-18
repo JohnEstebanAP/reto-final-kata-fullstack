@@ -25,14 +25,6 @@ const listModel = (list, tasks) => {
                           ${tasks}
                         </ul>
                       </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="boton-limpiar btn btn-primary"
-                        >
-                          Limpiar todo
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -43,3 +35,46 @@ const listModel = (list, tasks) => {
 };
 
 export default listModel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      // <div class="modal-footer">
+                      //   <button
+                      //     type="button"
+                      //     class="boton-limpiar btn btn-primary"
+                      //   >
+                      //     Limpiar todo
+                      //   </button>
+                      // </div>

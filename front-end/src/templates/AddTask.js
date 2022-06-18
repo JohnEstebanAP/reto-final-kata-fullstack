@@ -22,24 +22,27 @@ const AddTask = async () => {
   });
 
     //método editar
-  ulLists.addEventListener("keypress", (event) => {
+  ulLists.addEventListener("keypress",async (event) => {
     if (event.keyCode == 13) {
       const id= event.path[1].id;
       const description = event.path[0].value;
       const check = event.path[1].children[0].checked;
-      updateTask(id, description, check);
+      await updateTask(id, description, check);
     }
   });
   //método para edinar el estado de las tareas
-  ulLists.addEventListener("click", (event) => {
+  ulLists.addEventListener("click",async (event) => {
 
     if(event.target.classList[0] == "form-check-input"){
      const id= event.path[1].id;
       const description = event.path[1].children[2].value;
       const check = event.path[1].children[0].checked;
-      updateTask(id, description, check);
+      await updateTask(id, description, check);
 
-      // listarTareas(rutaLi, idList);
+      //recargamos la lista nuevamente
+      const idList = event.path[6].id;
+      const rutaLi = event.path[2];
+      listarTareas(rutaLi, idList);
     }
   });
 
@@ -149,6 +152,7 @@ const AddTask = async () => {
                               type="checkbox"
                               value=""
                               id="flexCheckDefault"
+                              checked=""
                             />
                             <label
                               class="form-check-label"
@@ -207,8 +211,8 @@ const AddTask = async () => {
   };
 
   //Procedimiento para editar  una tarea.
-  const updateTask = (idTask, description, realized ) => {
-  fetch(url1+idTask, {
+  const updateTask = async (idTask, description, realized ) => {
+  await fetch(url1+idTask, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

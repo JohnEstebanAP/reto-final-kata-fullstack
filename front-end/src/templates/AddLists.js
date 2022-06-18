@@ -111,6 +111,7 @@ const AddLists = async () => {
                               type="checkbox"
                               value=""
                               id="flexCheckDefault"
+                              checked=""
                             />
                             <label
                               class="form-check-label"

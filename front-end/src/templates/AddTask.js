@@ -24,11 +24,10 @@ const AddTask = async () => {
     //método editar
   ulLists.addEventListener("keypress", (event) => {
     if (event.keyCode == 13) {
-      // const id= event.path[1].id;
-      // const description = event.path[0].value;
-      // const description2 = event.path[0].disable;
-      // const check = event.path[1].children[0].checked;
-      // updateTask(id, description, check);
+      const id= event.path[1].id;
+      const description = event.path[0].value;
+      const check = event.path[1].children[0].checked;
+      updateTask(id, description, check);
     }
   });
   //método para edinar el estado de las tareas
@@ -39,6 +38,8 @@ const AddTask = async () => {
       const description = event.path[1].children[2].value;
       const check = event.path[1].children[0].checked;
       updateTask(id, description, check);
+
+      // listarTareas(rutaLi, idList);
     }
   });
 
@@ -205,9 +206,21 @@ const AddTask = async () => {
       .catch((error) => console.log(error));
   };
 
-  const updateTask = (idTarea, description) => {
-
-
+  //Procedimiento para editar  una tarea.
+  const updateTask = (idTask, description, realized ) => {
+  fetch(url1+idTask, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+          idTask: idTask,
+          description: description,
+          realized: realized,
+    }),
+  })
+    .then(() => console.log("actualizado"))
+    .catch((error) => console.error(error));
   };
 
   //Método para limpiar todas las tareas

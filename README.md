@@ -8,6 +8,9 @@ Sé debe clonar el repositorio y en un IDE como Intellij IDEA se podrá ejecutar
 <a href="https://youtu.be/uMJs0LL3RzE">Video de explicación.</a>
 
 
+<img src="https://github.com/JohnEstebanAP/reto-final-kata-fullstack/blob/master/Reto-kata.png?raw=true" align="left">
+<br>
+
 ## Instrucciones
  
 Ingresar a la carpeta principal

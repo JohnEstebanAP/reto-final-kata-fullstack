@@ -20,22 +20,33 @@ const AddTask = async () => {
       }
     }
   });
+
+    //método editar
+  ulLists.addEventListener("keypress", (event) => {
+    if (event.keyCode == 13) {
+      console.log(event.path[1].id)
+      console.log(event.path[0].value)
+      console.log(event.path[1].children[0].checked)
+      // editarTarea(event.path[1].id, event.path[0].value);
+    }
+  });
+  //método para edinar el estado de las tareas
+  ulLists.addEventListener("click", (event) => {
+
+    if(event.target.classList[0] == "form-check-input"){
+      console.log(event.path[1].id)
+      console.log(event.path[1].children[2].value)
+      console.log(event.path[1].children[0].checked)
+      // editarTarea(event.path[1].id, event.path[0].value);
+    }
+  });
+
+
   // botonLimpiar.addEventListener("click", () => {
   //   //método Limpiar
   //   limpiarTodo();
   // });
-  // listaTarea.addEventListener("keypress", (event) => {
-  //   //método editar
-  //   if (event.keyCode == 13) {
-  //     editarTarea(event.path[1].id, event.path[0].value);
-  //   }
-  // });
 
-  const loadTasks = (event, status) => {
-    if (status == 2) {
-      listarTareasDelete(event);
-    }
-  };
 
   const addTasks = async (event, status, description) => {
     if (status == 1) {
@@ -180,8 +191,6 @@ const AddTask = async () => {
         }
       }
     }
-    // arregloTareas = newArreglo;
-    // setArregloTareas();
   };
 
   //Método para limpiar todas las tareas

@@ -36,7 +36,7 @@ $ cd back-end
 ejecutar el servicio de Spring-Boot
 ```bash
 in repo: reto-final-kata-fullstack/back-end
-$ cd spring-boot:run
+$ mvn spring-boot:run
 ```
  
 Ingresar a la carpeta del front-end individualmente de al del Back-end en otra consola

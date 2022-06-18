@@ -8,7 +8,7 @@ Sé debe clonar el repositorio y en un IDE como Intellij IDEA se podrá ejecutar
 <a href="https://youtu.be/uMJs0LL3RzE">Video de explicación.</a>
 
 El primer video al parecer no quiere cargar en youtube dice que aun se esta procesando
-<a href="https://youtu.be/tBFOMs_hcBE>Video 2 de explicación.</a>
+<a href="https://youtu.be/tBFOMs_hcBE">Video 2 de explicación.</a>
 
 
 <img src="https://github.com/JohnEstebanAP/reto-final-kata-fullstack/blob/master/Reto-kata.png?raw=true" align="left">

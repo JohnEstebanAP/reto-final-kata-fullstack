@@ -2,10 +2,9 @@ const url1 = "http://localhost:8080/tasks/";
 const url2 = "http://localhost:8080/list/";
 const ulLists = document.querySelector(".ul-listas");
 
-
 const AddTask = async () => {
+  //método para agregar una tarea
   ulLists.addEventListener("click", (event) => {
-    //método para agregar una tarea
     if (event.path[0].type == "button") {
       if (event.path[0].classList.value == "boton-agregar") {
         addTasks(event, 1, "");
@@ -13,20 +12,18 @@ const AddTask = async () => {
     }
   });
 
+  //método para eliminar una tarea
+  ulLists.addEventListener("click", (event) => {
+    if (event.path[0].type == "button") {
+      if (event.path[0].classList.value == "boton-eliminar btn-dark") {
+        deleteTaks(event, event.path[1].id);
+      }
+    }
+  });
   // botonLimpiar.addEventListener("click", () => {
   //   //método Limpiar
   //   limpiarTodo();
   // });
-
-  // ulLists.addEventListener("click", (event) => {
-  //   //método para eliminar una tarea
-  //   if (event.path[0].type == "button") {
-  //     if (event.path[0].classList.value == "boton-eliminar btn-dark") {
-  //       // eliminarTarea(event, 2, event.path[1].id);
-  //     }
-  //   }
-  // });
-
   // listaTarea.addEventListener("keypress", (event) => {
   //   //método editar
   //   if (event.keyCode == 13) {
@@ -34,8 +31,8 @@ const AddTask = async () => {
   //   }
   // });
 
-   const loadTasks = (event, status) => {
-      if (status == 2) {
+  const loadTasks = (event, status) => {
+    if (status == 2) {
       listarTareasDelete(event);
     }
   };
@@ -45,35 +42,46 @@ const AddTask = async () => {
       let idList = event.path[4].id;
 
       await fetch(url1, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        description: description,
-        realized: false,
-        idlist:{ id: idList}
-      }),
-    }).then(() =>{
-      listarTareas(event, idList);
-    }).catch((err)=>{
-      console.log(err);
-    });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          description: description,
+          realized: false,
+          idlist: { id: idList },
+        }),
+      })
+        .then(() => {
+          const rutaLi = event.path[1].children[1];
+          listarTareas(rutaLi, idList);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
-  const eliminarTarea = (event, status, idTarea) => {
-    // let datos = getArregloTareas();
-    // let newArreglo = [];
-    // if (datos != null) {
-    //   for (const tarea of datos) {
-    //     if (tarea.id != idTarea) {
-    //       newArreglo.push(tarea);
-    //     }
-    //   }
-    // }
-    // arregloTareas = newArreglo;
-    // setArregloTareas(event, status);
+  const deleteTaks = (event, idTask) => {
+    Swal.fire({
+      title: "¿deseas eliminar esta Tarea?",
+      text: "¡No podra revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Si, Eliminar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("¡Eliminada!", "success");
+
+        fetch(url1 + idTask, {
+          method: "DELETE",
+        }).then(() => {
+          listarTareas(event.path[3].children[1], event.path[6].id);
+        });
+      }
+    });
   };
 
   const listarTareasDelete = (event) => {
@@ -112,16 +120,14 @@ const AddTask = async () => {
   };
 
   //funcion para mostrar los resultados
-  const mostrar = (data, event, idList) => {
-
+  const mostrar = (data, rutaLi) => {
     console.log(data);
-    // console.log(event.path[1].children[1])
     var resultados = "";
-    const litask = event.path[1].children[1];
+    const litask = rutaLi;
     litask.innerHTML = "";
 
-      data.tasks.forEach((task) => {
-        resultados += `
+    data.tasks.forEach((task) => {
+      resultados += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -148,12 +154,12 @@ const AddTask = async () => {
     litask.innerHTML = resultados;
   };
 
-  const listarTareas = (event, idList) => {
+  const listarTareas = (rutaLi, idList) => {
     //Procedimiento Mostrar
-    fetch(url2+idList)
+    fetch(url2 + idList)
       .then((response) => response.json())
       .then((data) => {
-         mostrar(data, event, idList);
+        mostrar(data, rutaLi, idList);
       })
       .catch((error) => console.log(error));
   };
@@ -179,9 +185,7 @@ const AddTask = async () => {
   };
 
   //Método para limpiar todas las tareas
-  const limpiarTodo = () => {
-
-  };
+  const limpiarTodo = () => {};
 
   //inicio
   // listarTareas();

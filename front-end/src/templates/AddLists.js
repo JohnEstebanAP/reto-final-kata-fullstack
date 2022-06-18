@@ -48,7 +48,6 @@ const AddLists = async () => {
     }
   });
 
-
   //función para agregar una lista
   const addList = async (name) => {
     await fetch(url, {
@@ -87,7 +86,6 @@ const AddLists = async () => {
       if (result.isConfirmed) {
         Swal.fire("¡Eliminada!", "success");
 
-        console.log(idlist);
         fetch(url + idlist, {
           method: "DELETE",
         }).then((res) => {

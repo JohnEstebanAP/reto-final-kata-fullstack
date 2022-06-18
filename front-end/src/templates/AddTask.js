@@ -24,20 +24,21 @@ const AddTask = async () => {
     //método editar
   ulLists.addEventListener("keypress", (event) => {
     if (event.keyCode == 13) {
-      console.log(event.path[1].id)
-      console.log(event.path[0].value)
-      console.log(event.path[1].children[0].checked)
-      // editarTarea(event.path[1].id, event.path[0].value);
+      // const id= event.path[1].id;
+      // const description = event.path[0].value;
+      // const description2 = event.path[0].disable;
+      // const check = event.path[1].children[0].checked;
+      // updateTask(id, description, check);
     }
   });
   //método para edinar el estado de las tareas
   ulLists.addEventListener("click", (event) => {
 
     if(event.target.classList[0] == "form-check-input"){
-      console.log(event.path[1].id)
-      console.log(event.path[1].children[2].value)
-      console.log(event.path[1].children[0].checked)
-      // editarTarea(event.path[1].id, event.path[0].value);
+     const id= event.path[1].id;
+      const description = event.path[1].children[2].value;
+      const check = event.path[1].children[0].checked;
+      updateTask(id, description, check);
     }
   });
 
@@ -138,7 +139,9 @@ const AddTask = async () => {
     litask.innerHTML = "";
 
     data.tasks.forEach((task) => {
-      resultados += `
+
+      if(task.realized){
+         resultados += `
                           <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
@@ -152,7 +155,7 @@ const AddTask = async () => {
                             >
                               ${task.idTask}
                             </label>
-                            <input type="text" class="input-tarea" value ="${task.description}"/>
+                            <input type="text" id="disabledInput" class="input-tarea" value ="${task.description}" disabled=""/>
                             <button
                               type="button"
                               class="boton-eliminar btn-dark"
@@ -161,7 +164,34 @@ const AddTask = async () => {
                             </button>
                           </li>
       `;
-    });
+
+      }else{
+       resultados += `
+                          <li id= "${task.idTask}">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexCheckDefault"
+                            >
+                              ${task.idTask}
+                            </label>
+                            <input type="text" id="disabledInput" class="input-tarea" value ="${task.description}" />
+                            <button
+                              type="button"
+                              class="boton-eliminar btn-dark"
+                            >
+                              X
+                            </button>
+                          </li>
+      `;
+      }
+
+         });
     litask.innerHTML = resultados;
   };
 
@@ -175,22 +205,9 @@ const AddTask = async () => {
       .catch((error) => console.log(error));
   };
 
-  const editarTarea = (idTarea, description) => {
-    let newTarea = {
-      id: idTarea,
-      descripcion: description,
-    };
-    let datos = getArregloTareas();
-    let newArreglo = [];
-    if (datos != null) {
-      for (const tarea of datos) {
-        if (tarea.id == idTarea) {
-          newArreglo.push(newTarea);
-        } else {
-          newArreglo.push(tarea);
-        }
-      }
-    }
+  const updateTask = (idTarea, description) => {
+
+
   };
 
   //Método para limpiar todas las tareas

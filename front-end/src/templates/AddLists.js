@@ -102,10 +102,10 @@ const AddLists = async () => {
     let resultados = "";
     data.forEach((list) => {
       var textTasks = "";
-      list.tasks.forEach((tarea) => {
-        console.log(tarea);
-        textTasks += `
-                          <li id= "${tarea.idTask}">
+      list.tasks.forEach((task) => {
+          if(task.realized){
+         textTasks += `
+                          <li id= "${task.idTask}">
                             <input
                               class="form-check-input"
                               type="checkbox"
@@ -116,9 +116,9 @@ const AddLists = async () => {
                               class="form-check-label"
                               for="flexCheckDefault"
                             >
-                              ${tarea.idTask}
+                              ${task.idTask}
                             </label>
-                            <input type="text" class="input-tarea" value ="${tarea.description}"/>
+                            <input type="text" id="disabledInput" class="input-tarea" value ="${task.description}" disabled=""/>
                             <button
                               type="button"
                               class="boton-eliminar btn-dark"
@@ -126,7 +126,33 @@ const AddLists = async () => {
                               X
                             </button>
                           </li>
-    `;
+      `;
+
+      }else{
+       textTasks += `
+                          <li id= "${task.idTask}">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexCheckDefault"
+                            >
+                              ${task.idTask}
+                            </label>
+                            <input type="text" id="disabledInput" class="input-tarea" value ="${task.description}" />
+                            <button
+                              type="button"
+                              class="boton-eliminar btn-dark"
+                            >
+                              X
+                            </button>
+                          </li>
+      `;
+      }
       });
       resultados += listModel(list, textTasks);
     });

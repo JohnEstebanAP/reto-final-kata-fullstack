@@ -1,7 +1,7 @@
 import AddTask from "@templates/AddTask.js";
 import AddLists from "@templates/AddLists.js";
 
-//import bootstrap from "bootstrap";
+//import bootstrap
 import "@styles/bootstrap.css";
 import "@styles/main.css";
 

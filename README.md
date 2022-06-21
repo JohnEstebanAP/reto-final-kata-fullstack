@@ -5,7 +5,7 @@ Reto final de Kata-FullStack, donde se creó una aplicación web par crear lista
 Sé debe clonar el repositorio y en un IDE como Intellij IDEA se podrá ejecutar el proyecto desde la carpeta demo crud y ejecutar la clase Demo crud Application.java, también es importante ejecutar la parte del front-end desde un servidor y tener la base de datos Mysql corriendo en su respectivo servidor.
 
 ## Video #
-<a href="https://youtu.be/LSC4OqDS9Cw">Video de explicación con audio :)</a
+<a href="https://youtu.be/LSC4OqDS9Cw">Video de explicación con audio :) </a>
 
 
 <img src="https://github.com/JohnEstebanAP/reto-final-kata-fullstack/blob/master/Reto-kata.png?raw=true" align="left">
